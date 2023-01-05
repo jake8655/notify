@@ -1,0 +1,6 @@
+if ! [ -x "$(command -v browser-sync)" ]; then
+  echo 'Error: browser-sync is not installed.\nInstall: npm i -g browser-sync' >&2
+  exit 1
+fi
+
+browser-sync start -s '.' --index 'public/index.html' -f '.' --no-notify --host localhost --port 3000

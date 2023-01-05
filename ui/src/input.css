@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* body { */
+/*   @apply bg-[url('https://cdn.mos.cms.futurecdn.net/6wkBw7S8q9nKY7VCzXrD3L-1200-80.jpg')] bg-no-repeat bg-cover; */
+/* } */
+
+.toast {
+  @apply flex flex-col gap-4 w-[32rem] items-end p-4;
+}
+
+.notification {
+  @apply relative flex flex-col items-center rounded-xl overflow-hidden py-2 px-4 max-w-lg break-words w-fit shadow;
+  background: rgb(0, 0, 0, .5);
+}
+
+.notification h3 {
+  @apply font-bold;
+}
+
+.notification:before {
+  @apply absolute content-[''] h-[2px] bottom-0 inset-x-0;
+  background: var(--color, red);
+  translate: calc(var(--fill, 0) * -1%) 0;
+  transition: translate calc(var(--duration, 2000) * 1ms) ease-in-out;
+}
