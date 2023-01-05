@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"tailwindcss -i src/input.css -o public/output.css -w\" \"./serve\""
+    "build": "tailwindcss -i src/input.css -o public/output.css",
+    "build-watch": "tailwindcss -i src/input.css -o public/output.css -w",
+    "dev": "concurrently \"npm:build-watch\" \"./serve\""
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-function Notify(title, body, color, duration)
+function SendNotify(title, body, color, duration)
     SendNUIMessage({
         title = title or 'Notification',
         body = body or 'Example notification',
@@ -7,7 +7,7 @@ function Notify(title, body, color, duration)
     })
 end
 
-AddEventHandler('notify:Notify')
-RegisterNetEvent('notify:Notify', function(title, body, color, duration)
-    Notify(title, body, color, duration)
+AddEventHandler('notify:SendNotify')
+RegisterNetEvent('notify:SendNotify', function(title, body, color, duration)
+    SendNotify(title, body, color, duration)
 end)

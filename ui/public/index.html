@@ -1,50 +1,50 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="/public/output.css" />
+  </head>
 
-<head>
-  <link rel="stylesheet" href="/public/output.css" />
-</head>
+  <body class="flex justify-end font-poppins text-white">
+    <main class="toast"></main>
+    <!-- <button -->
+    <!--   class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full bg-gray-400 p-4 shadow transition-colors hover:bg-red-400" -->
+    <!-- > -->
+    <!--   Notification -->
+    <!-- </button> -->
 
-<body class="flex justify-end font-poppins text-white">
-  <main class="toast"></main>
-  <!-- <button -->
-  <!--   class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full bg-gray-400 p-4 shadow transition-colors hover:bg-red-400"> -->
-  <!--   Notification -->
-  <!-- </button> -->
+    <script type="module">
+      import autoAnimate from '../node_modules/@formkit/auto-animate/index.mjs';
 
-  <script type="module">
-    import autoAnimate from '../node_modules/@formkit/auto-animate/index.mjs';
+      const toast = document.querySelector('.toast');
+      autoAnimate(toast);
 
-    const toast = document.querySelector('.toast');
-    autoAnimate(toast);
+      const eventListener = ({ data: { title, body, color, duration } }) => {
+        if (!title || !body) return;
 
-    const eventListener = ({data: {title, body, color, duration}}) => {
-      if (!title || !body) return;
+        const notifyElement = document.createElement('div');
 
-      const notifyElement = document.createElement('div');
+        notifyElement.classList.add('notification');
+        notifyElement.style.setProperty('--color', color);
+        notifyElement.style.setProperty('--duration', duration);
 
-      notifyElement.classList.add('notification');
-      notifyElement.style.setProperty('--color', color);
-      notifyElement.style.setProperty('--duration', duration);
+        const titleElement = document.createElement('h3');
+        const bodyElement = document.createElement('p');
+        titleElement.innerText = title;
+        bodyElement.innerText = body;
 
-      const titleElement = document.createElement('h3');
-      const bodyElement = document.createElement('p');
-      titleElement.innerText = title;
-      bodyElement.innerText = body;
+        notifyElement.append(titleElement);
+        notifyElement.append(bodyElement);
 
-      notifyElement.append(titleElement);
-      notifyElement.append(bodyElement);
+        toast.prepend(notifyElement);
 
-      toast.prepend(notifyElement);
+        setTimeout(() => {
+          notifyElement.style.setProperty('--fill', 100);
+        }, 500);
+        setTimeout(() => {
+          notifyElement.remove();
+        }, duration);
+      };
 
-      setTimeout(() => {
-        notifyElement.style.setProperty('--fill', 100);
-      }, 500);
-      setTimeout(() => {
-        notifyElement.remove();
-      }, duration);
-    };
-
-    window.addEventListener('message', eventListener);
+      window.addEventListener('message', eventListener);
 
       // const btn = document.querySelector('button');
       // btn.addEventListener('click', () => {
@@ -58,7 +58,6 @@
       //     },
       //   });
       // });
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
